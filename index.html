@@ -85,60 +85,71 @@
 
 <body class="bg-paper-50 text-slate-800 font-sans antialiased overflow-hidden w-full h-[100dvh] flex flex-col md:flex-row relative">
 
-    <div id="login-view" class="fixed inset-0 z-[500] bg-login flex items-center justify-center p-4 md:p-6 transition-opacity duration-500 overflow-y-auto pt-10 pb-10">
+<div id="login-view" class="fixed inset-0 z-[500] bg-login flex items-center justify-center p-4 md:p-6 transition-opacity duration-500 overflow-y-auto pt-10 pb-10">
         <div class="bg-white/95 backdrop-blur-xl w-full max-w-md rounded-[2.5rem] p-8 md:p-10 shadow-2xl flex flex-col items-center fade-in text-center border border-white/50 relative overflow-hidden my-auto">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-brand-400 to-accent-500 rounded-[1.5rem] flex items-center justify-center text-white text-3xl md:text-4xl shadow-lg mb-5 transform rotate-3 shrink-0">
                 <i class="fa-solid fa-leaf"></i>
             </div>
             <h1 class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight mb-1">Kampus.id</h1>
-            <p class="text-[10px] md:text-xs font-bold text-brand-500 uppercase tracking-widest mb-6 md:mb-8">Integrated Campus Portal</p>
+            <p class="text-[10px] md:text-xs font-bold text-brand-500 uppercase tracking-widest mb-6">Integrated Campus Portal</p>
             
-            <div id="role-selection" class="w-full space-y-4 fade-in">
-                <p class="text-sm font-bold text-slate-500 mb-2">Pilih akses masuk Anda:</p>
-                <button onclick="window.selectRole('mahasiswa')" class="w-full bg-white border-2 border-paper-200 hover:border-brand-500 p-4 md:p-5 rounded-2xl flex items-center space-x-4 transition-all group active:scale-95 shadow-sm">
-                    <div class="w-12 h-12 bg-brand-50 text-brand-500 rounded-xl flex items-center justify-center text-xl md:text-2xl group-hover:bg-brand-500 group-hover:text-white transition-colors shrink-0"><i class="fa-solid fa-user-graduate"></i></div>
-                    <div class="text-left">
-                        <p class="font-black text-slate-800 text-base md:text-lg">Mahasiswa</p>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase leading-tight">Akses Kuliah & Tugas</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right ml-auto text-slate-300 group-hover:text-brand-500 transition-colors"></i>
+            <!-- VIEW LOGIN -->
+            <div id="view-login" class="w-full space-y-4 fade-in">
+                <button onclick="window.loginWithGoogle()" class="w-full bg-white border-2 border-paper-200 hover:border-brand-500 p-3 rounded-2xl flex items-center justify-center space-x-3 transition-all active:scale-95 shadow-sm font-bold text-slate-700">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6" alt="Google">
+                    <span>Masuk dengan Google</span>
                 </button>
-                <button onclick="window.selectRole('dosen')" class="w-full bg-white border-2 border-paper-200 hover:border-indigo-500 p-4 md:p-5 rounded-2xl flex items-center space-x-4 transition-all group active:scale-95 shadow-sm">
-                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center text-xl md:text-2xl group-hover:bg-indigo-500 group-hover:text-white transition-colors shrink-0"><i class="fa-solid fa-chalkboard-user"></i></div>
-                    <div class="text-left">
-                        <p class="font-black text-slate-800 text-base md:text-lg">Dosen / Staff</p>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase leading-tight">Manajemen & Monitor</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right ml-auto text-slate-300 group-hover:text-indigo-500 transition-colors"></i>
-                </button>
-            </div>
-
-            <div id="mahasiswa-form" class="w-full space-y-3 hidden fade-in mt-2">
-                <button onclick="window.backToRole()" class="text-xs font-bold text-brand-600 mb-4 flex items-center hover:underline bg-brand-50 px-3 py-1.5 rounded-lg w-max mx-auto transition"><i class="fa-solid fa-arrow-left mr-2"></i> Kembali Pilih Peran</button>
-                <div class="text-left mb-2"><p class="text-xs font-bold text-slate-500 ml-1 mb-1">Masuk atau Daftar Baru</p></div>
-                <div class="relative">
-                    <i class="fa-solid fa-id-card absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="login-nim" placeholder="NIM Mahasiswa" class="w-full bg-paper-100 rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-brand-400 transition-all border border-paper-200 focus:bg-white text-slate-800">
+                
+                <div class="flex items-center my-4">
+                    <div class="flex-1 h-px bg-paper-200"></div>
+                    <span class="px-3 text-xs font-bold text-slate-400 uppercase">ATAU EMAIL</span>
+                    <div class="flex-1 h-px bg-paper-200"></div>
                 </div>
-                <div class="relative">
-                    <i class="fa-solid fa-user absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="login-nama" placeholder="Nama Lengkap Anda" class="w-full bg-paper-100 rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-brand-400 transition-all border border-paper-200 focus:bg-white text-slate-800">
-                </div>
-                <button id="btn-login-mhs" class="w-full bg-slate-800 text-white font-bold py-4 rounded-2xl mt-4 shadow-lg shadow-slate-800/20 active:scale-95 transition-transform text-base md:text-lg">Masuk Mahasiswa</button>
-            </div>
 
-            <div id="dosen-form" class="w-full space-y-3 hidden fade-in mt-2">
-                <button onclick="window.backToRole()" class="text-xs font-bold text-indigo-600 mb-4 flex items-center hover:underline bg-indigo-50 px-3 py-1.5 rounded-lg w-max mx-auto transition"><i class="fa-solid fa-arrow-left mr-2"></i> Kembali Pilih Peran</button>
-                <div class="text-left mb-2"><p class="text-xs font-bold text-slate-500 ml-1 mb-1">Masuk sebagai Dosen</p></div>
                 <div class="relative">
-                    <i class="fa-solid fa-id-badge absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="login-nidn" placeholder="NIDN / Nama Dosen" class="w-full bg-paper-100 rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-indigo-400 transition-all border border-paper-200 focus:bg-white text-slate-800">
+                    <i class="fa-solid fa-envelope absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="email" id="login-email" placeholder="Alamat Email" class="w-full bg-paper-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-brand-400 border border-paper-200 text-slate-800">
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-lock absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="password" id="login-pass-dosen" placeholder="Password" class="w-full bg-paper-100 rounded-2xl py-3.5 md:py-4 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-indigo-400 transition-all border border-paper-200 focus:bg-white text-slate-800">
+                    <input type="password" id="login-password" placeholder="Kata Sandi" class="w-full bg-paper-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-brand-400 border border-paper-200 text-slate-800">
                 </div>
-                <button id="btn-login-dsn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl mt-4 shadow-lg shadow-indigo-500/30 active:scale-95 transition-transform text-base md:text-lg">Masuk Dashboard</button>
+                
+                <button onclick="window.handleEmailLogin()" class="w-full bg-slate-800 text-white font-bold py-4 rounded-2xl shadow-lg active:scale-95 transition-transform text-sm mt-2">Masuk</button>
+                <p class="text-xs font-semibold text-slate-500 mt-4">Belum punya akun? <span onclick="window.toggleAuthView('register')" class="text-brand-600 cursor-pointer hover:underline font-bold">Daftar Sekarang</span></p>
+            </div>
+
+            <!-- VIEW DAFTAR (REGISTRASI) -->
+            <div id="view-register" class="w-full space-y-3 hidden fade-in">
+                <div class="relative">
+                    <i class="fa-solid fa-user absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="reg-nama" placeholder="Nama Lengkap" class="w-full bg-paper-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-accent-400 border border-paper-200 text-slate-800">
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-envelope absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="email" id="reg-email" placeholder="Alamat Email" class="w-full bg-paper-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-accent-400 border border-paper-200 text-slate-800">
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="password" id="reg-password" placeholder="Kata Sandi (Min 6 Karakter)" class="w-full bg-paper-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-accent-400 border border-paper-200 text-slate-800">
+                </div>
+                
+                <div class="text-left mt-2">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase ml-1 mb-1">Daftar Sebagai:</p>
+                    <div class="flex space-x-2">
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="reg-role" value="mahasiswa" class="peer hidden" checked>
+                            <div class="text-center py-2 rounded-xl border-2 border-paper-200 peer-checked:border-brand-500 peer-checked:bg-brand-50 text-slate-500 peer-checked:text-brand-600 font-bold text-xs transition">Mahasiswa</div>
+                        </label>
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="reg-role" value="dosen" class="peer hidden">
+                            <div class="text-center py-2 rounded-xl border-2 border-paper-200 peer-checked:border-accent-500 peer-checked:bg-accent-50 text-slate-500 peer-checked:text-accent-600 font-bold text-xs transition">Dosen</div>
+                        </label>
+                    </div>
+                </div>
+
+                <button onclick="window.handleEmailRegister()" class="w-full bg-accent-600 text-white font-bold py-4 rounded-2xl shadow-lg active:scale-95 transition-transform text-sm mt-4">Buat Akun</button>
+                <p class="text-xs font-semibold text-slate-500 mt-4">Sudah punya akun? <span onclick="window.toggleAuthView('login')" class="text-accent-600 cursor-pointer hover:underline font-bold">Masuk</span></p>
             </div>
         </div>
     </div>
@@ -2168,21 +2179,42 @@
     </div>
     <!-- AKHIR MODAL E-KTM -->
 
-    <script type="module">
+<script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        
+        // --- BARIS INI YANG DIUBAH (Ditambah fitur Email, Password, Google, dan SignOut) ---
+        import { 
+            getAuth, 
+            signInWithEmailAndPassword, 
+            createUserWithEmailAndPassword,
+            GoogleAuthProvider, 
+            signInWithPopup, 
+            onAuthStateChanged, 
+            signOut 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        // ----------------------------------------------------------------------------------
+
         import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // FIREBASE SETUP
-        const myFirebaseConfig = {
-            apiKey: "AIzaSyD2vM1dU_YuLGPYtPqN8DqM_qxq4CqDLLU",
-            authDomain: "ecopulse-f8b26.firebaseapp.com",
-            databaseURL: "https://ecopulse-f8b26-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "ecopulse-f8b26",
-            storageBucket: "ecopulse-f8b26.firebasestorage.app",
-            messagingSenderId: "369786445975",
-            appId: "1:369786445975:web:ebfe8a06019761572309d2"
-        }; 
+        const firebaseConfig = {
+          apiKey: "AIzaSyAMlYcOzS4ynoZvsK09lxVbfQlOZoiIKkw",
+          authDomain: "kampusid-49f5b.firebaseapp.com",
+          projectId: "kampusid-49f5b",
+          storageBucket: "kampusid-49f5b.firebasestorage.app",
+          messagingSenderId: "290025580846",
+          appId: "1:290025580846:web:7e2b27f8a56ff81b11b2bf",
+          measurementId: "G-XLR24X59L7"
+        };
+
+        // Inisialisasi Firebase
+        let firebaseApp, auth, db;
+        try {
+            firebaseApp = initializeApp(myFirebaseConfig);
+            auth = getAuth(firebaseApp);
+            db = getFirestore(firebaseApp);
+        } catch(e) {
+            console.error("Gagal inisialisasi Firebase:", e);
+        }
 
         const kimiApiKey = "knkt-UVdl8puDh2MGS6Ivp2duOgZD"; 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'ecoverse-campus';
@@ -2235,8 +2267,6 @@
         };
 
         const setupAllEventListeners = () => {
-            bindEvent('btn-login-mhs', window.handleLoginMahasiswa);
-            bindEvent('btn-login-dsn', window.handleLoginDosen);
             bindEvent('btn-logout-mhs', window.handleLogoutMahasiswa);
             bindEvent('btn-logout-dsn', window.handleLogoutDosen);
             
@@ -2299,22 +2329,6 @@
             }
         };
 
-        window.handleLoginMahasiswa = () => {
-            const nim = document.getElementById('login-nim').value.trim();
-            const namaInput = document.getElementById('login-nama').value.trim();
-            if(!nim) return window.showToast('Masukkan NIM Mahasiswa!');
-            if(!namaInput && !allStudents[nim]) return window.showToast('Masukkan Nama Lengkap Anda!');
-            
-            if(allStudents[nim]) {
-                appState = allStudents[nim]; 
-            } else {
-                appState = { 
-                    isLoggedIn: false, points: 0, level: 1, exp: 0, aksiCount: 0,
-                    completedChallengeIds: [], joinedClasses: [], lastAttendanceDate: null,
-                    nim: nim, userName: namaInput, userBio: "Mahasiswa EcoVerse 🌍"
-                };
-            }
-
             appState.isLoggedIn = true;
             window.saveState();
             window.startProfileSync();
@@ -2328,18 +2342,6 @@
                 window.renderJadwalMahasiswa();
             }, 500);
             window.showToast("Selamat datang di Kampus EcoVerse!");
-        };
-
-        window.handleLogoutMahasiswa = () => {
-            appState.isLoggedIn = false;
-            try {
-                if(appState.nim) {
-                    allStudents[appState.nim] = appState;
-                    localStorage.setItem('ecoverse_all_students', JSON.stringify(allStudents));
-                }
-                localStorage.removeItem('ecoverse_state'); 
-            } catch(e) {}
-            window.location.reload(); 
         };
 
         let profileUnsubscribe = null;
@@ -3041,30 +3043,114 @@ window.renderSoalMahasiswa = (questions) => {
             }, 500);
         };
 
+        // Fungsi mengganti tampilan form Login / Register
+        window.toggleAuthView = (view) => {
+            if (view === 'register') {
+                document.getElementById('view-login').classList.add('hidden');
+                document.getElementById('view-register').classList.remove('hidden');
+            } else {
+                document.getElementById('view-register').classList.add('hidden');
+                document.getElementById('view-login').classList.remove('hidden');
+            }
+        };
+
+        // FUNGSI 1: DAFTAR (REGISTRASI) EMAIL & PASSWORD
+        window.handleEmailRegister = async () => {
+            const nama = document.getElementById('reg-nama').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            // Mengambil data radio button (Mahasiswa atau Dosen)
+            const role = document.querySelector('input[name="reg-role"]:checked').value;
+
+            if (!nama || !email || !password) return window.showToast('Harap lengkapi semua data pendaftaran!');
+            if (password.length < 6) return window.showToast('Password minimal 6 karakter!');
+
+            window.showToast("Membuat akun...");
+            try {
+                // Proses membuat akun di Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // Simpan profil & role ke Firebase Firestore (Database)
+                await setDoc(doc(db, 'users', user.uid), {
+                    uid: user.uid,
+                    nama: nama,
+                    email: email,
+                    role: role,
+                    timestamp: Date.now()
+                });
+
+                window.showToast("Akun berhasil dibuat! Memuat sistem...");
+                // Catatan: Setelah ini berhasil, onAuthStateChanged di Langkah 8 akan otomatis berjalan
+            } catch (error) {
+                console.error(error);
+                window.showToast("Gagal mendaftar: " + error.message);
+            }
+        };
+
+        // FUNGSI 2: MASUK (LOGIN) EMAIL & PASSWORD
+        window.handleEmailLogin = async () => {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            if (!email || !password) return window.showToast('Harap masukkan email dan password!');
+
+            window.showToast("Memeriksa data masuk...");
+            try {
+                // Mencocokkan data dengan Firebase Authentication
+                await signInWithEmailAndPassword(auth, email, password);
+                window.showToast("Login berhasil!");
+            } catch (error) {
+                console.error(error);
+                window.showToast("Email atau kata sandi salah!");
+            }
+        };
+
+        // FUNGSI 3: MASUK (LOGIN) MENGGUNAKAN GOOGLE
+        window.loginWithGoogle = async () => {
+            const provider = new GoogleAuthProvider();
+            try {
+                // Memunculkan Pop-up akun Google
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                
+                // Cek apakah user Google ini sudah punya data role di Firestore
+                const docRef = doc(db, 'users', user.uid);
+                const { getDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+                const docSnap = await getDoc(docRef);
+
+                // Jika belum ada di Firestore (baru pertama kali login Google)
+                if (!docSnap.exists()) {
+                    await setDoc(doc(db, 'users', user.uid), {
+                        uid: user.uid,
+                        nama: user.displayName || 'Pengguna Google',
+                        email: user.email,
+                        role: 'mahasiswa', // Default di-set sebagai mahasiswa
+                        timestamp: Date.now()
+                    });
+                }
+                window.showToast("Login Google berhasil!");
+            } catch (error) {
+                console.error(error);
+                window.showToast("Gagal login dengan Google.");
+            }
+        };
+
+        // FUNGSI 4: KELUAR (LOGOUT) GLOBAL
+        window.handleGlobalLogout = async () => {
+            try {
+                // Menghapus sesi aktif dari Firebase
+                await signOut(auth);
+                appState.isLoggedIn = false;
+                dosenState.isLoggedIn = false;
+                window.location.reload(); // Refresh halaman setelah logout
+            } catch (error) {
+                window.showToast("Gagal keluar akun.");
+            }
+        };
+
 
         // ========================== LOGIC DOSEN ==========================
-
-        window.handleLoginDosen = () => {
-            const nidn = document.getElementById('login-nidn').value.trim();
-            if(!nidn) return window.showToast('Masukkan NIDN Dosen!');
-            dosenState.isLoggedIn = true; dosenState.name = nidn; dosenState.nidn = nidn;
-            try { localStorage.setItem('ecoverse_dosen', JSON.stringify(dosenState)); } catch(e){}
-            
-            document.getElementById('login-view').classList.add('opacity-0');
-            setTimeout(() => { 
-                document.getElementById('login-view').classList.add('hidden'); 
-                document.getElementById('dosen-app').classList.remove('hidden');
-                setTimeout(() => document.getElementById('dosen-app').classList.remove('opacity-0'), 50);
-                window.setupDashboardDosen(); 
-            }, 500);
-            window.showToast("Selamat datang di Dasbor Dosen!");
-        };
-
-        window.handleLogoutDosen = () => {
-            dosenState.isLoggedIn = false;
-            try { localStorage.setItem('ecoverse_dosen', JSON.stringify(dosenState)); } catch(e){}
-            window.location.reload();
-        };
 
         window.setupDashboardDosen = () => {
             document.getElementById('dosen-name').innerText = dosenState.name;
@@ -5467,49 +5553,119 @@ window.renderSoalMahasiswa = (questions) => {
                 };
                 await checkAuth();
                 
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
+        // Mengecek secara realtime apakah ada user yang sedang login di Firebase
+                onAuthStateChanged(auth, async (user) => {
+                    if (user && !user.isAnonymous) { 
                         currentUser = user;
-                        if(appState.isLoggedIn) window.startProfileSync();
                         
-                        onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'posts'), (s) => { 
-                            const ps = []; s.forEach(d => ps.push({id: d.id, ...d.data()})); 
-                            ps.sort((a,b) => b.timestamp - a.timestamp); window.renderPosts(ps); 
-                        });
-                        onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'global_chat'), (s) => { 
-                            const ms = []; s.forEach(d => ms.push({id: d.id, ...d.data()})); 
-                            ms.sort((a,b) => a.timestamp - b.timestamp); window.renderGlobalChat(ms); 
-                        });
-                        onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'classes'), (s) => { 
-                            globalClasses = [];
-                            s.forEach(d => globalClasses.push({id: d.id, ...d.data()})); 
+                        try {
+                            // Ambil data user dari Firestore untuk mengetahui apakah dia Dosen atau Mahasiswa
+                            const { getDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+                            const userDoc = await getDoc(doc(db, 'users', user.uid));
                             
-                            if (appState.isLoggedIn) {
-                                window.renderJoinedClasses();
-                                if(window.currentActiveKelasMhs) window.renderMateriMahasiswa();
-                            }
-                            if (dosenState.isLoggedIn) {
-                                window.renderDosenKelas();
-                                if(window.currentActiveKelasDsn) window.renderMateriDosen();
-                            }
-                        });
-
-                        onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'exams'), (s) => { 
-                            window.activeExams = [];
-                            s.forEach(d => window.activeExams.push({id: d.id, ...d.data()})); 
-                            
-                            if (dosenState.isLoggedIn && window.ujianAktifDsn && window.currentExamId) {
-                                window.renderExamMonitorDsn();
-                            }
-                            
-                            if (appState.isLoggedIn && window.examModeActive && window.currentMhsExamId) {
-                                const activeMhsExam = window.activeExams.find(e => e.id === window.currentMhsExamId);
-                                if (activeMhsExam && activeMhsExam.status === 'closed') {
-                                    window.showToast('Sesi Ujian telah ditutup secara resmi oleh Dosen.');
-                                    window.keluarDariUjianSelesai();
+                            if (userDoc.exists()) {
+                                const userData = userDoc.data();
+                                
+                                // Sembunyikan layar login
+                                document.getElementById('login-view').classList.add('opacity-0', 'pointer-events-none');
+                                setTimeout(() => document.getElementById('login-view').classList.add('hidden'), 500);
+        
+                                if (userData.role === 'dosen') {
+                                    // SETUP APLIKASI DOSEN
+                                    dosenState.isLoggedIn = true;
+                                    dosenState.name = userData.nama;
+                                    dosenState.nidn = userData.uid;
+                                    
+                                    document.getElementById('dosen-app').classList.remove('hidden');
+                                    setTimeout(() => document.getElementById('dosen-app').classList.remove('opacity-0'), 50);
+                                    window.setupDashboardDosen();
+                                    
+                                    const btnLogoutDsn = document.getElementById('btn-logout-dsn');
+                                    if(btnLogoutDsn) btnLogoutDsn.onclick = window.handleGlobalLogout;
+        
+                                } else {
+                                    // SETUP APLIKASI MAHASISWA
+                                    appState.isLoggedIn = true;
+                                    appState.nim = userData.uid; 
+                                    appState.userName = userData.nama;
+                                    appState.userBio = "Mahasiswa Kampus.id";
+                                    
+                                    document.getElementById('mahasiswa-app').classList.remove('hidden');
+                                    setTimeout(() => document.getElementById('mahasiswa-app').classList.remove('opacity-0'), 50);
+                                    
+                                    window.startProfileSync();
+                                    window.updateUIMahasiswa();
+                                    window.renderJoinedClasses(); 
+                                    window.renderJadwalMahasiswa();
+        
+                                    const btnLogoutMhs = document.getElementById('btn-logout-mhs');
+                                    if(btnLogoutMhs) btnLogoutMhs.onclick = window.handleGlobalLogout;
                                 }
+        
+                                // =========================================================
+                                // KODE ASLI ANDA UNTUK DATA REAL-TIME (JANGAN DIHAPUS)
+                                // =========================================================
+                                onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'posts'), (s) => { 
+                                    const ps = []; s.forEach(d => ps.push({id: d.id, ...d.data()})); 
+                                    ps.sort((a,b) => b.timestamp - a.timestamp); 
+                                    if(window.renderPosts) window.renderPosts(ps); 
+                                });
+                                
+                                onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'global_chat'), (s) => { 
+                                    const ms = []; s.forEach(d => ms.push({id: d.id, ...d.data()})); 
+                                    ms.sort((a,b) => a.timestamp - b.timestamp); 
+                                    window.renderGlobalChat(ms); 
+                                });
+                                
+                                onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'classes'), (s) => { 
+                                    globalClasses = [];
+                                    s.forEach(d => globalClasses.push({id: d.id, ...d.data()})); 
+                                    
+                                    if (appState.isLoggedIn) {
+                                        window.renderJoinedClasses();
+                                        if(window.currentActiveKelasMhs) window.renderMateriMahasiswa();
+                                    }
+                                    if (dosenState.isLoggedIn) {
+                                        window.renderDosenKelas();
+                                        if(window.currentActiveKelasDsn) window.renderMateriDosen();
+                                    }
+                                });
+        
+                                onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'exams'), (s) => { 
+                                    window.activeExams = [];
+                                    s.forEach(d => window.activeExams.push({id: d.id, ...d.data()})); 
+                                    
+                                    if (dosenState.isLoggedIn && window.ujianAktifDsn && window.currentExamId) {
+                                        window.renderExamMonitorDsn();
+                                    }
+                                    
+                                    if (appState.isLoggedIn && window.examModeActive && window.currentMhsExamId) {
+                                        const activeMhsExam = window.activeExams.find(e => e.id === window.currentMhsExamId);
+                                        if (activeMhsExam && activeMhsExam.status === 'closed') {
+                                            window.showToast('Sesi Ujian telah ditutup secara resmi oleh Dosen.');
+                                            window.keluarDariUjianSelesai();
+                                        }
+                                    }
+                                });
+                                // =========================================================
+        
+                            } else {
+                                // Jika terdaftar di Auth tapi belum punya dokumen di Firestore
+                                window.showToast("Data profil tidak ditemukan. Harap login ulang.");
+                                const { signOut } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
+                                await signOut(auth);
                             }
-                        });
+                        } catch (error) {
+                            console.error("Gagal menarik data role dari server: ", error);
+                        }
+                    } else {
+                        // Jika tidak ada user yang aktif / sudah ter-logout
+                        // Paksa kembali ke layar Login
+                        document.getElementById('login-view').classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+                        document.getElementById('mahasiswa-app').classList.add('hidden', 'opacity-0');
+                        document.getElementById('dosen-app').classList.add('hidden', 'opacity-0');
+                    }
+                });
                         
                         // KODE BERITA DIJADIKAN SATU (TIDAK DOBEL LAGI)
                         onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'news'), (s) => { 
