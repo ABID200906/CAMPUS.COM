@@ -4741,7 +4741,7 @@ window.renderSoalMahasiswa = (questions) => {
                 const promptSystem = "Kamu adalah Lumi, asisten AI ramah di kampus EcoVerse. Jawab singkat, padat, berbahasa Indonesia, dan selipkan emoji yang relevan.";
         
                 // 3. MENGHUBUNGI SERVER KONEKTIKA
-                const response = await fetch('https://konektika.web.id/v1/chat/completions', {
+                const response = await fetch('https://konektika.web.id/v1/chat/completions'), {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
